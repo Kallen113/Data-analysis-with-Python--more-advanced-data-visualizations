@@ -30,5 +30,5 @@ sns.jointplot(xa, ya, kind = 'reg', stat_func=R_2)
 
 ```
 ![Bachelor's attainment and median earnings with R2 coefficient]
-(Data-analysis-with-Python--more-advanced-data-visualizations/Bachelor's attainment vs median earnings with R2 coefficient.png)
+(Data-analysis-with-Python--more-advanced-data-visualizations/Data-analysis-with-Python--more-advanced-data-visualizations/Bachelor's attainment vs median earnings with R2 coefficient.png)
       
