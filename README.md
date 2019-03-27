@@ -1,7 +1,55 @@
 # Data-analysis-with-Python--more-advanced-data-visualizations
 Data visualizations using the matplotlib and seaborn libraries:
 
-Code demo of Data visualization:
+# Summary of Data visualizations:
+
+Barplot of covariates ranked by correlation with housing sale prices, 
+Source of data: Ames, IA housing dataset (2006-2010 house price data)- (Note: for more detailed analysis of this dataset also see this repo: https://github.com/Kallen113/Python_data_analysis_Ames-IA_Housing_dataset.git).
+
+Source code:
+```
+#imports
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+#import the data:
+# since the first column is unnamed and does not actually contain data, specify a range to avoid importing this column
+range_1 = [i for i in range(1,118)]
+
+#input the specified range as the argument for the pd.read_csv's usecols parameter
+usecols = range_1
+
+df_housing = pd.read_csv('Amex_IA_dataset_cleaned.csv', usecols=usecols)
+
+# for purposes of finding correlations with SalePrice, create a new Index object and convert to list with all numeric columns from the  dataframe
+numeric = df_housing.select_dtypes(include=['int64','float64']).columns
+
+#drop the SalePrice column (since we don't want to see the correlation with itself) and ID (since it does not have any actual data for examining correlations) from the numeric Series
+numeric = numeric.drop(['Id','SalePrice']) 
+
+#convert to list
+numeric  = list(numeric)
+
+#calculate the correlations of each variable to SalePrice
+corr = df_housing[['SalePrice'] + numeric].corr()
+
+#sort the correlations by ascending: i.e., negative to highest positive
+corr2 = corr.sort_values('SalePrice', ascending=False)
+
+#initialize the figure and dimensions of the correlations with SalePrice
+plt.figure(figsize=(15,17))
+
+#use a barplot via Seaborn, and show the correlations with SalePrice
+#Also, set the title for the plot
+sns.barplot(corr2.SalePrice[1:], corr2.index[1:]).set_title('Ranked correlations with SalePrice')
+                   
+plt.show()
+```
+## Barplot of ranked correlations with respect to Ames, IA house sale prices for 2006-2010:
+![Ames_IA_ranked_correlations_wrt_SalePrice](https://user-images.githubusercontent.com/35751364/55116926-41c91080-50a6-11e9-876f-a2886d7b007c.png)
+
 
 Using the scipy library's stats module, various statistics such as the pearson correlation coefficient (r) can be calculate. To find the R^2
 coefficient, one can merely take the square of this coefficient. 
@@ -29,6 +77,7 @@ def R_2(x, y):
 sns.jointplot(xa, ya, kind = 'reg', stat_func=R_2)
 
 ```
+## Regression and histogram jointplot showing correlation between bachelor's degree attainment and median earnings, using county-level 2017 5-year Census/ACS data:
 ![Bachelor's attainment vs median earnings with R2 coefficient](https://user-images.githubusercontent.com/35751364/55039148-50e58b00-4fe0-11e9-8744-8d264b515aad.png)
 
 Countplot of investment funding types, 1982-204 Crunchbase data:
@@ -54,4 +103,5 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
 ax.set_title('Countplot of investment funding types')
 
 ```
+## Countplot of invesment funding types for startups, 1982-2014 Crunchbase data:
 ![Countplot_Crunchbase_1982-2014_dataset](https://user-images.githubusercontent.com/35751364/55042644-b2612600-4fef-11e9-8ca0-ba0659d78703.png)
