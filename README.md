@@ -7,7 +7,7 @@ Using the scipy library's stats module, various statistics such as the pearson c
 coefficient, one can merely take the square of this coefficient. 
 
 The R^2 coefficient can then be displayed and applied to the regression plot:
-Regression plot with line of best fit and R^2 coefficient (i.e., coefficient of determination), example from IPython Jupyter notebook:
+Regression plot with line of best fit and R^2 coefficient (i.e., coefficient of determination), example from IPython Jupyter notebook, using Census 2017 ACS educational attainment data:
 ```
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -31,4 +31,26 @@ sns.jointplot(xa, ya, kind = 'reg', stat_func=R_2)
 ```
 ![Bachelor's attainment vs median earnings with R2 coefficient](https://user-images.githubusercontent.com/35751364/55039148-50e58b00-4fe0-11e9-8744-8d264b515aad.png)
 
-      
+Countplot of investment funding types, 1982-204 Crunchbase data:
+```
+#import pyplot so dimensions of the figure can be modified
+from matplotlib import pyplot
+
+#input dimensions into the figure
+fig, ax = pyplot.subplots(figsize=(13, 10))
+
+#resize font of the titles and tickmarkers
+sns.set(font_scale = 1.5)
+
+#set style to whitegrid for better visability
+sns.set_style('whitegrid')
+
+sns.countplot(x="funding_round_type", data =startup_data, ax = ax, palette = "Greens")
+
+#set ticklabels to rotate the x-axis labels; this will make the labels display more cleanly
+ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
+
+#set main plot title
+ax.set_title('Countplot of investment funding types')
+
+```
