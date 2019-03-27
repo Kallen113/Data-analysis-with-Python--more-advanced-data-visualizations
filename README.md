@@ -54,3 +54,4 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
 ax.set_title('Countplot of investment funding types')
 
 ```
+![Countplot_Crunchbase_1982-2014_dataset](https://user-images.githubusercontent.com/35751364/55042644-b2612600-4fef-11e9-8ca0-ba0659d78703.png)
