@@ -1,9 +1,11 @@
 # Data-analysis-with-Python--more-advanced-data-visualizations
 Data visualizations using the matplotlib and seaborn libraries:
 
-# Summary of Data visualizations:
+#  I.) Summary of Data visualizations:
 
-Barplot of covariates ranked by correlation with housing sale prices, 
+## A.) Visualizations using the Ames, IA housing dataset:
+
+## 1.) Barplot of covariates ranked by correlation with housing sale prices: 
 Source of data: Ames, IA housing dataset (2006-2010 house price data)- (Note: for more detailed analysis of this dataset also see this repo: https://github.com/Kallen113/Python_data_analysis_Ames-IA_Housing_dataset.git).
 
 Source code:
@@ -50,6 +52,23 @@ plt.show()
 ## Barplot of ranked correlations with respect to Ames, IA house sale prices for 2006-2010:
 ![Ames_IA_ranked_correlations_wrt_SalePrice](https://user-images.githubusercontent.com/35751364/55116926-41c91080-50a6-11e9-876f-a2886d7b007c.png)
 
+## 2.) Countplot of homes by month and year sold:
+```
+#barplot of year and month sold
+df_housing.groupby(['YrSold', 'MoSold']).Id.count().plot(kind='bar',figsize=(14,6))
+
+#set title
+plt.title('Years and months when Ames, IA Homes were sold')
+
+plt.show()
+
+```
+## Countplot of Ames, IA homes by month and year sold, Jan 2006-July 2010:
+![Ames_IA_countplot_of_home_year_sold](https://user-images.githubusercontent.com/35751364/55117293-899c6780-50a7-11e9-9ca7-f666c6a64e2e.png)
+
+
+
+## B.) Visualiations using county-level Census/ACS 2017 data on educational attainment and median annual earnings:
 
 Using the scipy library's stats module, various statistics such as the pearson correlation coefficient (r) can be calculate. To find the R^2
 coefficient, one can merely take the square of this coefficient. 
@@ -80,6 +99,7 @@ sns.jointplot(xa, ya, kind = 'reg', stat_func=R_2)
 ## Regression and histogram jointplot showing correlation between bachelor's degree attainment and median earnings, using county-level 2017 5-year Census/ACS data:
 ![Bachelor's attainment vs median earnings with R2 coefficient](https://user-images.githubusercontent.com/35751364/55039148-50e58b00-4fe0-11e9-8744-8d264b515aad.png)
 
+## C.) Visualizations using 1982-2014 Crunchbase data on startup investment funding:
 Countplot of investment funding types, 1982-204 Crunchbase data:
 ```
 #import pyplot so dimensions of the figure can be modified
